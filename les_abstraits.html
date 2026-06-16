@@ -1,25 +1,108 @@
 
- <h1>Les Abstraits</h1>
+<!DOCTYPE html>
+<html lang="fr">
 
-    <a href="index.html" class="retour">
-        ← Retour à l'accueil
-    </a>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Les Abstraits - Claude Grand</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#111;
+    color:white;
+}
+
+header{
+    text-align:center;
+    padding:30px 20px;
+}
+
+.retour{
+    display:inline-block;
+    margin-top:15px;
+    padding:10px 20px;
+    background:#222;
+    color:white;
+    text-decoration:none;
+    border-radius:25px;
+}
+
+.retour:hover{
+    background:#b22222;
+}
+
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:35px;
+    padding:30px;
+}
+
+.card{
+    background:#181818;
+    border-radius:12px;
+    overflow:hidden;
+    text-decoration:none;
+    color:white;
+}
+
+.card img{
+    width:100%;
+    height:320px;
+    object-fit:cover;
+    display:block;
+}
+
+.card-content{
+    padding:20px;
+}
+
+.card-content h3{
+    margin-top:0;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+ <h1>Les Abstraits</h1>
+ <a href="index.html" class="retour">
+      ← Retour à l'accueil
+ </a>
 
 </header>
 
 <div class="gallery">
 
-
 <a class="card" href="images/les_abstraits/amadeus.jpg" target="_blank">
-<img src="images/les_abstraits/amadeus.jpg">
+<img src="images/les_abstraits/amadeus.jpg" loading="lazy">
 <div class="card-content">
-<h3>Amadéus</h3>
+ <h3>Amadéus</h3>
+
 <p><strong>Technique :</strong> Acrylique sur papier</p>
-<p><strong>Dimensions :</strong> 120 x 80 cm</p>
- <p><strong>Année :</strong> 2022</p>   
-<p>Des torrents de feu et d’azur jaillissent dans un même souffle. La couleur explose, libre et sauvage, comme une énergie impossible à contenir.</p>
+<p><strong>Dimensions :</strong> 120 × 80 cm</p>
+<p><strong>Année :</strong> 2022</p>
+
+<p> Des torrents de feu et d’azur jaillissent dans un même souffle.
+   La couleur explose, libre et sauvage, comme une énergie impossible à contenir.
+            </p>
 </div>
 </a>
+
+
+
+
+
+
 
 <a class="card" href="images/les_abstraits/ange_bleu.jpg" target="_blank">
 <img src="images/les_abstraits/ange_bleu.jpg">
