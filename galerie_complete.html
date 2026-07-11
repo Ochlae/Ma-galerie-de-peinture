@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Galerie complète — Claude Grand</title>
+
+<style>
+html {
+    scroll-behavior:smooth;
+}
+
+body {
+    margin:0;
+    background:#0d0d0d;
+    color:white;
+    font-family:Arial, sans-serif;
+}
+
+.entete-galerie {
+    text-align:center;
+    padding:55px 25px 35px;
+    background:#111;
+}
+
+.entete-galerie h1 {
+    margin:0 0 15px;
+    font-size:2.6rem;
+}
+
+.entete-galerie p {
+    max-width:850px;
+    margin:auto;
+    color:#ccc;
+    line-height:1.7;
+}
+
+.retour-accueil {
+    display:inline-block;
+    margin-top:25px;
+    color:white;
+    text-decoration:none;
+    padding:11px 20px;
+    border:1px solid #777;
+    border-radius:25px;
+}
+
+.menu-defilement {
+    position:sticky;
+    top:0;
+    z-index:50;
+    display:flex;
+    gap:10px;
+    overflow-x:auto;
+    padding:12px 15px;
+    background:rgba(9,9,9,0.96);
+    border-bottom:1px solid #333;
+    scrollbar-width:thin;
+}
+
+.menu-defilement a {
+    flex:0 0 auto;
+    color:white;
+    text-decoration:none;
+    padding:9px 15px;
+    border:1px solid #555;
+    border-radius:22px;
+    font-size:0.92rem;
+}
+
+.menu-defilement a:hover {
+    background:#b22222;
+}
+
+.serie-section {
+    scroll-margin-top:85px;
+    max-width:1200px;
+    margin:0 auto;
+    padding:65px 25px 35px;
+    border-bottom:1px solid #333;
+}
+
+.serie-section h2 {
+    text-align:center;
+    font-size:2.2rem;
+    margin:0 0 35px;
+}
+
+.serie-section .gallery,
+.serie-section .galerie {
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(230px, 1fr));
+    gap:24px;
+}
+
+.serie-section .card {
+    background:#181818;
+    border-radius:12px;
+    overflow:hidden;
+    text-decoration:none;
+    color:white;
+    cursor:pointer;
+}
+
+.serie-section .card img {
+    width:100%;
+    height:auto;
+    display:block;
+}
+
+.serie-section .card-content {
+    padding:20px;
+}
+
+.serie-section .card-content h3 {
+    margin-top:0;
+}
+
+.serie-section figure {
+    margin:0;
+}
+
+.serie-section figure h3 {
+    text-align:center;
+    font-size:1.05rem;
+    margin:0 0 10px;
+}
+
+.serie-section img {
+    width:100%;
+    height:auto;
+    display:block;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.serie-section figcaption {
+    margin-top:9px;
+    color:#bbb;
+    text-align:center;
+    line-height:1.45;
+    font-size:0.92rem;
+}
+
+.chargement,
+.erreur {
+    text-align:center;
+    color:#aaa;
+    padding:30px;
+}
+
+.erreur {
+    color:#e6a0a0;
+}
+
+#viewer {
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:1000;
+    background:rgba(0,0,0,0.94);
+    align-items:center;
+    justify-content:center;
+    padding:25px;
+}
+
+#viewer.ouvert {
+    display:flex;
+}
+
+#viewer img {
+    max-width:92vw;
+    max-height:86vh;
+    object-fit:contain;
+}
+
+#fermer-viewer {
+    position:absolute;
+    top:15px;
+    right:22px;
+    background:none;
+    border:none;
+    color:white;
+    font-size:2.5rem;
+    cursor:pointer;
+}
+
+footer {
+    text-align:center;
+    padding:30px;
+    color:#888;
+    background:#090909;
+}
+
+@media screen and (max-width:700px) {
+    .entete-galerie h1 {
+        font-size:2rem;
+    }
+
+    .serie-section {
+        padding:50px 15px 30px;
+    }
+
+    .serie-section h2 {
+        font-size:1.8rem;
+    }
+
+    .serie-section .gallery,
+.serie-section .galerie {
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="entete-galerie">
+    <h1>Toutes mes séries</h1>
+    <p>
+        Les œuvres sont présentées série après série.
+        Vous pouvez maintenant parcourir toute la galerie par un simple défilement,
+        sans revenir à la page d’accueil entre chaque collection.
+    </p>
+    <a class="retour-accueil" href="index.html">Retour à l’accueil</a>
+</header>
+
+<nav class="menu-defilement" aria-label="Accès direct aux séries">
+<a href="#les-abstraits">Les Abstraits</a>
+<a href="#aquarelles">Les Aquarelles</a>
+<a href="#les-magnetiques">Les Magnétiques</a>
+<a href="#les-evasions">Les Évasions</a>
+<a href="#les-kalista">Les Kalista</a>
+<a href="#expressions">Expressions</a>
+<a href="#chant-matieres">Le Chant des Matières</a>
+<a href="#ames-perdues">Les Âmes Perdues</a>
+<a href="#amoureux">Les Amoureux</a>
+<a href="#asiales">Les Asiales</a>
+<a href="#bateaux-rouges">Les Bateaux Rouges</a>
+<a href="#lignes">Les Lignes</a>
+<a href="#amadeos">Les Amadeos</a>
+<a href="#solitudes">Les Solitudes</a>
+<a href="#signatures">Les Signatures</a>
+<a href="#damnes">Les Damnés</a>
+<a href="#paysages">Les Paysages</a>
+<a href="#petits-endroits">Les Petits Endroits</a>
+<a href="#encres-fusains">Encres et Fusain</a>
+<a href="#villages-fortifies">Les Villages Fortifiés</a>
+<a href="#portraits">Les Portraits</a>
+</nav>
+
+<main>
+<section id="les-abstraits" class="serie-section" data-page="les_abstraits.html">
+    <h2>Les Abstraits</h2>
+    <div class="chargement">Chargement des œuvres…</div>
+</section>
+<section id="aquarelles" class="serie-section" data-page="aquarelles.html">
+    <h2>Les Aquarelles</h2>
+    <div class="chargement">Chargement des œuvres…</div>
+</section>
+<section id="les-magnetiques" class="serie-section" data-page="les_magnetiques.html">
+    <h2>Les Magnétiques</h2>
+    <div class="chargement">Chargement des œuvres…</div>
+</section>
+<section id="les-evasions" class="serie-section" data-page="evasion.html">
+    <h2>Les Évasions</h2>
+    <div class="chargement">Chargement des œuvres…</div>
+</section>
+<section id="les-kalista" class="serie-section" data-page="kalista.html">
+    <h2>Les Kalista</h2>
+    <div class="chargement">Chargement des œuvres…</div>
+</section>
+<section id="expressions" class="serie-section" data-page="expressions.html">
+    <h2>Expressions</h2>
+    <div class="chargement">Chargement des œuvres…</div>
+</section>
+<section id="chant-matieres" class="serie-section" data-page="le_chant_des_matieres.html">
+    <h2>Le Chant des Matières</h2>
+    <div class="chargement">Chargement des œuvres…</div>
+</section>
+<section id="ames-perdues" class="serie-section" data-page="les_ames_perdues.html">
+    <h2>Les Âmes Perdues</h2>
+    <div class="chargement">Chargement des œuvres…</div>
+</section>
+<section id="amoureux" class="serie-section" data-page="les_amoureux.html">
+    <h2>Les Amoureux</h2>
+    <div class="chargement">Chargement des œuvres…</div>
+</section>
+<section id="asiales" class="serie-section" data-page="les_asiales.html">
+    <h2>Les Asiales</h2>
+    <div class="chargement">Chargement des œuvres…</div>
+</section>
+<section id="bateaux-rouges" class="serie-section" data-page="les_bateaux_rouges.html">
+    <h2>Les Bateaux Rouges</h2>
+    <div class="chargement">Chargement des œuvres…</div>
+</section>
+<section id="lignes" class="serie-section" data-page="les_lignes.html">
+    <h2>Les Lignes</h2>
+    <div class="chargement">Chargement des œuvres…</div>
+</section>
+<section id="amadeos" class="serie-section" data-page="les_amadeos.html">
+    <h2>Les Amadeos</h2>
+    <div class="chargement">Chargement des œuvres…</div>
+</section>
+<section id="solitudes" class="serie-section" data-page="les_solitudes.html">
+    <h2>Les Solitudes</h2>
+    <div class="chargement">Chargement des œuvres…</div>
+</section>
+<section id="signatures" class="serie-section" data-page="les_signatures.html">
+    <h2>Les Signatures</h2>
+    <div class="chargement">Chargement des œuvres…</div>
+</section>
+<section id="damnes" class="serie-section" data-page="les_damnes.html">
+    <h2>Les Damnés</h2>
+    <div class="chargement">Chargement des œuvres…</div>
+</section>
+<section id="paysages" class="serie-section" data-page="paysages.html">
+    <h2>Les Paysages</h2>
+    <div class="chargement">Chargement des œuvres…</div>
+</section>
+<section id="petits-endroits" class="serie-section" data-page="les_petits_endroits.html">
+    <h2>Les Petits Endroits</h2>
+    <div class="chargement">Chargement des œuvres…</div>
+</section>
+<section id="encres-fusains" class="serie-section" data-page="encres_et_fusains.html">
+    <h2>Encres et Fusain</h2>
+    <div class="chargement">Chargement des œuvres…</div>
+</section>
+<section id="villages-fortifies" class="serie-section" data-page="villages_fortifies.html">
+    <h2>Les Villages Fortifiés</h2>
+    <div class="chargement">Chargement des œuvres…</div>
+</section>
+<section id="portraits" class="serie-section" data-page="portraits.html">
+    <h2>Les Portraits</h2>
+    <div class="chargement">Chargement des œuvres…</div>
+</section>
+</main>
+
+<div id="viewer" aria-hidden="true">
+    <button id="fermer-viewer" aria-label="Fermer">&times;</button>
+    <img id="viewer-image" src="" alt="">
+</div>
+
+<footer>
+    © Claude Grand — Ma Galerie de Peinture
+</footer>
+
+<script>
+const sections = document.querySelectorAll(".serie-section");
+
+async function chargerSerie(section) {
+    const page = section.dataset.page;
+
+    try {
+        const reponse = await fetch(page);
+
+        if (!reponse.ok) {
+            throw new Error("Page introuvable");
+        }
+
+        const texte = await reponse.text();
+        const documentSerie = new DOMParser().parseFromString(texte, "text/html");
+        const galerie = documentSerie.querySelector(".gallery, .galerie");
+
+        if (!galerie) {
+            throw new Error("Aucune galerie trouvée dans cette page");
+        }
+
+        section.querySelector(".chargement").replaceWith(galerie);
+
+        galerie.querySelectorAll("a.card").forEach(card => {
+            card.addEventListener("click", evenement => {
+                evenement.preventDefault();
+                const image = card.querySelector("img");
+                if (image) ouvrirViewer(image);
+            });
+        });
+
+        galerie.querySelectorAll("figure img").forEach(image => {
+            image.addEventListener("click", () => ouvrirViewer(image));
+        });
+
+    } catch (erreur) {
+        section.querySelector(".chargement").outerHTML =
+            '<div class="erreur">Impossible de charger cette série : ' + page + '</div>';
+    }
+}
+
+sections.forEach(chargerSerie);
+
+const viewer = document.getElementById("viewer");
+const viewerImage = document.getElementById("viewer-image");
+const fermerViewer = document.getElementById("fermer-viewer");
+
+function ouvrirViewer(image) {
+    viewerImage.src = image.src;
+    viewerImage.alt = image.alt || "";
+    viewer.classList.add("ouvert");
+    viewer.setAttribute("aria-hidden", "false");
+}
+
+function fermer() {
+    viewer.classList.remove("ouvert");
+    viewer.setAttribute("aria-hidden", "true");
+    viewerImage.src = "";
+}
+
+fermerViewer.addEventListener("click", fermer);
+
+viewer.addEventListener("click", evenement => {
+    if (evenement.target === viewer) {
+        fermer();
+    }
+});
+
+document.addEventListener("keydown", evenement => {
+    if (evenement.key === "Escape") {
+        fermer();
+    }
+});
+</script>
+
+</body>
+</html>
