@@ -564,7 +564,43 @@ async function chargerSerie(section, numero) {
     }
 }
 
-sections.forEach((section, numero) => chargerSerie(section, numero));
+// Replacer la série demandée après le chargement des galeries et des images.
+let navigationUtilisateur = false;
+
+function signalerNavigationUtilisateur() {
+    navigationUtilisateur = true;
+}
+
+window.addEventListener("wheel", signalerNavigationUtilisateur, { passive: true });
+window.addEventListener("touchstart", signalerNavigationUtilisateur, { passive: true });
+window.addEventListener("pointerdown", signalerNavigationUtilisateur, { passive: true });
+window.addEventListener("keydown", signalerNavigationUtilisateur);
+window.addEventListener("hashchange", signalerNavigationUtilisateur);
+
+async function chargerGalerie() {
+    await Promise.all(sections.map((section, numero) => chargerSerie(section, numero)));
+
+    const images = Array.from(document.querySelectorAll(".serie-section img"));
+    await Promise.all(images.map(image => {
+        if (image.complete) return Promise.resolve();
+
+        return new Promise(resolve => {
+            image.addEventListener("load", resolve, { once: true });
+            image.addEventListener("error", resolve, { once: true });
+        });
+    }));
+
+    if (!navigationUtilisateur && window.location.hash) {
+        const section = document.getElementById(
+            decodeURIComponent(window.location.hash.slice(1))
+        );
+        if (section) {
+            section.scrollIntoView({ behavior: "instant", block: "start" });
+        }
+    }
+}
+
+chargerGalerie();
 
 fermerViewer.addEventListener("click", fermer);
 precedentViewer.addEventListener("click", () => afficherImage(indexViewer - 1));
